@@ -11,8 +11,6 @@ export default function App() {
     '', '', ''
   ])
 
-  console.log(winner);
-
   useEffect(() => {
     const winPatterns = [
       [0, 1, 2],
@@ -29,10 +27,22 @@ export default function App() {
       const [a, b, c] = winPatterns[i]
       
       if(gameGrid[a] && gameGrid[a] === gameGrid[b] && gameGrid[b] === gameGrid[c]) {
-        setWinner({player: gameGrid[a], winPattern: winPatterns[i]})
+        setWinner({player: gameGrid[a], pattern: winPatterns[i]})
       }
     }
   }, [gameGrid])
+
+  useEffect(() => {
+    const elements = document.querySelectorAll('.el')
+    
+    if(winner !== '') {
+      elements.forEach((el, i) => {
+        if(winner.pattern.includes(i)) el.style.color = 'green'
+      })
+    }
+
+    return () => elements.forEach(el => el.style.color = 'white')
+  }, [winner])
 
   function handleReset() {
     setGameGrid(gameGrid.map(() => ''))
@@ -52,7 +62,7 @@ export default function App() {
         setCurrentPlayer={setCurrentPlayer}
         winner={winner}
       />
-      {winner !== '' && <h1>Winner is: {winner.player}</h1>}
+      {winner !== '' && <h1>Winner is: {winner.player.toUpperCase()}</h1>}
       <button
         onClick={handleReset}
       >
