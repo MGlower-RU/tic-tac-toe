@@ -1,0 +1,49 @@
+.tic-tac-toe__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
+}
+
+.grid__wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 10rem);
+  grid-template-rows: repeat(3, 10rem);
+
+  .el {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: .1rem solid white;
+    font-size: 3rem;
+    cursor: pointer;
+    color: white;
+    user-select: none;
+
+    &:hover {
+      box-shadow: inset 0 0 1rem white;
+    }
+  }
+}
+
+.current-player {
+  font-size: 5rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+button {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  background-color: rgb(255, 255, 255);
+  transition: background-color .34s ease-in-out;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, .7);
+  }
+}
